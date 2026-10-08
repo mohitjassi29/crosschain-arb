@@ -132,6 +132,51 @@ Estimated H2 equation (retained-gap outcome, main specification):
 dwell time and chain are controlled the difference in the table's loss column is not significant (p = 0.11). That column is not a
 usable loss measure (see *Data notes*), so the multi-chain question cannot be answered with this data.
 
+## Robustness
+
+`scripts/run_robustness.py` (notebook `06`) re-estimates H1 and H2 under alternative choices; the full tables are in `results/`.
+
+**H1 — depth elasticity, 17 specifications.** The coefficient on log depth is negative in every one (−0.21 to −0.46) and significant at the 5% level in all but the 1,003 episodes that coincide with a gas spike.
+
+| Specification | N | Elasticity $\beta$ | Day-clustered SE |
+|---|---|---|---|
+| file spike flag, >= 1s | 20,074 | −0.429 | 0.140 |
+| file spike flag, >= 1s, winsorised depth | 20,074 | −0.442 | 0.146 |
+| file spike flag, >= 5s | 17,988 | −0.264 | 0.086 |
+| file spike flag, >= 5s, winsorised depth | 17,988 | −0.273 | 0.090 |
+| recomputed p95 flag, >= 1s | 20,074 | −0.449 | 0.141 |
+| recomputed p95 flag, >= 1s, winsorised depth | 20,074 | −0.462 | 0.147 |
+| recomputed p95 flag, >= 5s | 17,988 | −0.279 | 0.086 |
+| recomputed p95 flag, >= 5s, winsorised depth | 17,988 | −0.288 | 0.089 |
+| within-day top-decile spike rule, >= 5s | 17,988 | −0.279 | 0.088 |
+| negative-basis gaps, >= 5s | 17,733 | −0.304 | 0.069 |
+| gas-spike episodes only | 1,003 | −0.225 | 0.312 |
+| non-spike episodes only | 16,985 | −0.288 | 0.090 |
+| day fixed effects | 17,988 | −0.209 | 0.083 |
+| depth at episode entry (trailing window, predetermined) | 17,988 | −0.264 | 0.085 |
+| FALSIFICATION: forward-looking depth at entry | 17,983 | −0.279 | 0.080 |
+| depth proxy window = 500 ticks | 17,988 | −0.303 | 0.080 |
+| depth proxy window = 2000 ticks | 17,980 | −0.271 | 0.092 |
+
+The forward-looking row averages volume over the 1,000 ticks *after* the gap opens; it gives the same coefficient as the trailing measure, so the estimate is an association rather than an identified causal effect.
+
+**H2 — timing interaction, 7 specifications** (retained-gap outcome, interaction $\eta$).
+
+| Specification | Treated episodes | Interaction $\eta$ | Clustered p |
+|---|---|---|---|
+| baseline: I = 1{half-life > median latency} | 4 | +1.189 | 0.014 |
+| trim latency at p99 | 4 | +1.187 | 0.014 |
+| within-episode p95 latency in I | 1 | not estimable | – |
+| half-life from 0.5s grid (5.3s) | 0 | not estimable | – |
+| half-life from 2s grid (18.9s) | 58 | +0.732 | <0.001 |
+| half-life from 5s grid (39.0s) | 753 | +0.156 | 0.259 |
+| episodes >= 5s only | 2 | +0.459 | <0.001 |
+
+The interaction is positive in every specification that can be estimated. Where the treated group has fewer than 100 episodes the clustered p-value is not informative, because the estimate rests on a handful of observations; the only specification with a sizeable treated group (the 5 s grid, 753 episodes) gives +0.156 and is not significant.
+The continuous version, regressing the retained gap on half-life − latency over all episodes, has a coefficient of +0.0014 per second (SE 0.0002, p < 0.001). Quantile regressions of the retained gap on the timing indicator give +0.43 at $q = 0.25$ and −0.59 at $q = 0.75$, so the timing effect is not uniform across the distribution; these too rest on 4 treated episodes.
+
+**Half-life.** It changes with the sampling grid (see *Mean reversion* above), so the 9.97 s figure refers specifically to the 1 s grid.
+
 ## Data notes
 
 1. **H1/H2 series are proxies.** `basis_t` is the Binance close minus its 50-tick moving average, `depth` a rolling mean of Binance
