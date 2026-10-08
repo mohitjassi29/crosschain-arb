@@ -168,3 +168,32 @@ def test_method_section_parameters(res):
     has(
         f"\\hat\\varphi = {g.loc[1.0, 'phi']:.4f}\\ \\Rightarrow\\ \\hat\\tau_{{1/2}} = {g.loc[1.0, 'half_life_s']:.2f}"
     )
+
+
+def _pf(p):
+    return "<0.001" if p < 0.001 else f"{p:.3f}"
+
+
+def test_robustness_tables(res):
+    r1, r2, rob = res["r1"], res["r2"], res["rob"]
+    for r in r1.itertuples():
+        has(f"| {r.spec} | {int(r.n):,} | {num(r.beta, 3)} | {r.se_cluster:.3f} |")
+    assert list(r1[r1["p_cluster"] > 0.05]["spec"]) == ["gas-spike episodes only"]
+    has(f"{len(r1)} specifications.** The coefficient on log depth is negative in every one")
+    for r in r2.itertuples():
+        if pd.isna(r.interaction):
+            has(f"| {r.spec} | {int(r.n_treated)} | not estimable | – |")
+        else:
+            has(f"| {r.spec} | {int(r.n_treated)} | {num(r.interaction, 3, True)} | {_pf(r.p_interaction)} |")
+    m, q = rob["h2_margin"], rob["h2_quantile"]
+    has(f"+{m['beta_margin']:.4f} per second (SE {m['se']:.4f}, p < 0.001)")
+    has(
+        f"give {num(q['q25']['timing_I'], 2, True)} at $q = 0.25$ and {num(q['q75']['timing_I'], 2, True)} at $q = 0.75$"
+    )
+
+    five = r2[r2["spec"].str.startswith("half-life from 5s grid")].iloc[0]
+    assert five["p_interaction"] > 0.05
+    has(
+        f"(the 5 s grid, {int(five['n_treated'])} episodes) gives {num(five['interaction'], 3, True)} and is not significant"
+    )
+    has(f"**H2 — timing interaction, {len(r2)} specifications**")
