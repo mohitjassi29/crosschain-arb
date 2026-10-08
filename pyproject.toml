@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "crosschain-arb"
+version = "0.2.0"
+description = "Liquidity, latency and mean-reversion in cross-chain ETH/USDC basis arbitrage (Ethereum-Arbitrum)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.26",
+  "pandas>=2.1",
+  "pyarrow>=15",
+  "scipy>=1.11",
+  "statsmodels>=0.14",
+  "matplotlib>=3.8",
+  "lifelines>=0.27",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.5", "jupyterlab>=4.1", "nbformat", "nbclient", "ipykernel"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["data: needs the real data files in data/ (skipped otherwise)"]
+filterwarnings = ["ignore::FutureWarning"]
+
+[tool.ruff]
+line-length = 110
+src = ["src", "tests", "scripts"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.per-file-ignores]
+"*.ipynb" = ["E501", "UP031"]
+"tests/test_readme_consistency.py" = ["E501"]

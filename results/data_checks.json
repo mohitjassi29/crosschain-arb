@@ -1,0 +1,80 @@
+{
+  "panel": {
+    "rows": 1017975,
+    "first": "2023-03-12 09:38:00.400000",
+    "last": "2023-06-30 23:59:57.087000",
+    "basis_equals_close_minus_rolling50": true,
+    "corr_depth_vs_rolling_volume": 0.9999958370728734,
+    "latency_lag1_autocorr": -0.0009928210960804275,
+    "panel_latency_percentiles_s": {
+      "p50": 89.5,
+      "p90": 386.3,
+      "p99": 1270.8
+    },
+    "share_spike_stored_flag": 0.09188929001203369,
+    "share_spike_recomputed_p95": 0.05000712198236695
+  },
+  "bridge_latency": {
+    "n": 9362,
+    "lognormal_mu": 4.494771023674422,
+    "lognormal_sigma": 1.140640649452847,
+    "empirical_percentiles_s": {
+      "p50": 49.0,
+      "p90": 646.0,
+      "p99": 698.8
+    },
+    "fitted_percentiles_s": {
+      "p50": 89.54766234277982,
+      "p90": 386.2793582371855,
+      "p99": 1271.9392375960851
+    },
+    "ks_statistic": 0.2695278104346275,
+    "ks_pvalue": 0.0,
+    "share_faster_than_half_life": {
+      "proxy_basis_1s": 0.00010681478316599017,
+      "uniswap_basis_1s": 0.7196111941892758
+    }
+  },
+  "units": {
+    "dex_first": "2023-03-01 00:00:11",
+    "dex_last": "2023-09-30 23:59:58.005000",
+    "corr_binance_vs_price_l1": 0.9993236426976815,
+    "corr_binance_vs_price_l2": 0.9994150068471743
+  },
+  "lp": {
+    "table_rows": 11093,
+    "table_unique_wallets": 11093,
+    "table_median_abs_lvr": 2.5669919302644023e+22,
+    "table_rows_abs_lvr_below_1e4": 2642,
+    "table_rows_abs_lvr_below_1e4_exactly_zero": 2642,
+    "wallets_on_both_chains_all_time": 1733,
+    "wallets_on_both_chains_mar_jun_2023": 379,
+    "table_rows_multi_chain": 787,
+    "table_share_multi_chain": 0.07094564139547463,
+    "median_dwell_s_multi": 1846272.0,
+    "median_dwell_s_single": 0.0,
+    "p_mannwhitney_dwell": 7.41226808382886e-88,
+    "controlled_ols_beta_multi_chain": 30718.981680429217,
+    "controlled_ols_p_multi_chain": 0.10891634187436634,
+    "ledgers": {
+      "ethereum": {
+        "rows": 260521,
+        "wallets": 14510,
+        "first": "2021-05-05 21:41:20",
+        "last": "2024-08-28 12:22:24",
+        "share_rows_in_window": 0.12091923491772257,
+        "wallets_in_window": 2742,
+        "share_negative_cum_liquidity": 0.04873695402673873
+      },
+      "arbitrum": {
+        "rows": 1304039,
+        "wallets": 55610,
+        "first": "2021-07-12 20:43:44",
+        "last": "2024-08-28 12:50:08",
+        "share_rows_in_window": 0.14588444057271294,
+        "wallets_in_window": 14393,
+        "share_negative_cum_liquidity": 0.2990194311673194
+      }
+    }
+  }
+}

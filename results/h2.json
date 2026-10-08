@@ -1,0 +1,87 @@
+{
+  "half_life_s": 9.968370149076666,
+  "n_episodes": 17988,
+  "n_treated": 2,
+  "median_episode_latency_s": 90.70249232785571,
+  "fits": {
+    "retained": {
+      "n": 17988,
+      "n_treated": 2,
+      "level": -0.371005931641341,
+      "slope_untreated": 0.4137368295414959,
+      "interaction": 0.4584646207316363,
+      "se_interaction": 0.05889571146869777,
+      "p_interaction": 7.007450871222005e-15,
+      "coefficients": {
+        "Intercept": {
+          "coef": 0.48884379139585343,
+          "se_cluster": 0.055798943279379114
+        },
+        "basis_start": {
+          "coef": 0.4137368295414959,
+          "se_cluster": 0.06745752177745523
+        },
+        "timing_I": {
+          "coef": -0.371005931641341,
+          "se_cluster": 0.03905816557554437
+        },
+        "basis_start:timing_I": {
+          "coef": 0.4584646207316363,
+          "se_cluster": 0.05889571146869777
+        },
+        "gas_mean": {
+          "coef": -0.0026197578436286985,
+          "se_cluster": 0.0005810322286510422
+        },
+        "spike_dummy": {
+          "coef": 0.37400653657477234,
+          "se_cluster": 0.08134832116478367
+        }
+      },
+      "slope_treated": 0.8722014502731321,
+      "warnings": [
+        "only 2 treated episodes (timing_I == 1) out of 17988; the interaction estimate is not reliable"
+      ]
+    },
+    "closure": {
+      "n": 17988,
+      "n_treated": 2,
+      "level": 0.37100593164132994,
+      "slope_untreated": 0.5862631704585045,
+      "interaction": -0.4584646207316551,
+      "se_interaction": 0.058895711468699936,
+      "p_interaction": 7.007450871220133e-15,
+      "coefficients": {
+        "Intercept": {
+          "coef": -0.48884379139583667,
+          "se_cluster": 0.05579894327937929
+        },
+        "basis_start": {
+          "coef": 0.5862631704585045,
+          "se_cluster": 0.06745752177745577
+        },
+        "timing_I": {
+          "coef": 0.37100593164132994,
+          "se_cluster": 0.03905816557554446
+        },
+        "basis_start:timing_I": {
+          "coef": -0.4584646207316551,
+          "se_cluster": 0.058895711468699936
+        },
+        "gas_mean": {
+          "coef": 0.0026197578436287245,
+          "se_cluster": 0.0005810322286510398
+        },
+        "spike_dummy": {
+          "coef": -0.37400653657477284,
+          "se_cluster": 0.08134832116478266
+        }
+      },
+      "slope_treated": 0.1277985497268494,
+      "warnings": [
+        "only 2 treated episodes (timing_I == 1) out of 17988; the interaction estimate is not reliable"
+      ]
+    }
+  },
+  "mean_retained_gap": 0.5731743829219483
+}
